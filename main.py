@@ -30,7 +30,7 @@ def login(page):
 def get_data(page):
     data = []
     try:
-        d1 = "SoC_SP_Cravinhos"
+        d1 = "SoC_SP_Louveira"
         d2 = "SOC_Received"
 
         # Acessa a página
