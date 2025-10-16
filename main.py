@@ -75,13 +75,13 @@ async def main():
             d1 = (datetime.now() + timedelta(days=1)).strftime("%Y/%m/%d")
 
             # Primeiro campo de data
-            date_input = page.get_by_role("textbox", name="Data de início").nth(1)
+            date_input = page.get_by_role("placeholder", name="Data de início").nth(0)
             await date_input.wait_for(state="visible", timeout=10000)
             await date_input.click(force=True)
             await date_input.fill(d3)
 
             # Segundo campo de data
-            date_input = page.get_by_role("textbox", name="Data final").nth(1)
+            date_input = page.get_by_role("placeholder", name="Data final").nth(0)
             await date_input.wait_for(state="visible", timeout=10000)
             await date_input.click(force=True)
             await date_input.fill(d1)
