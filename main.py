@@ -66,7 +66,7 @@ async def main():
             # NAVEGAÇÃO E DOWNLOAD
             await page.goto("https://spx.shopee.com.br/#/queue-list")
             await page.wait_for_timeout(10000)
-            await page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div/div/div/div[2]/div[2]/div[2]/div/div[2]/button[2]/span').click()
+            await page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/button[2]').click()
             await page.wait_for_timeout(10000)
             await page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div/div/div/div[2]/button/span').click()
             await page.wait_for_timeout(10000)
