@@ -76,7 +76,7 @@ async def main():
 
             # Primeiro campo de data
             #date_input = page.get_by_role("placeholder", name="Data de início").nth(0)
-            date_input = page.locator('input[placeholder="Data de início"]')
+            date_input = page.locator('input[placeholder="Data de início"]').nth(0)
             #date_input = page.locator('xpath=/html[1]/body[1]/div[4]/div[2]/div[1]/div[1]/div[3]/div[2]/form[1]/div[1]/span[2]/div[1]/div[1]/span[1]/span[1]/input[1]').nth(0)
             await date_input.wait_for(state="visible", timeout=10000)
             await date_input.click(force=True)
@@ -84,7 +84,7 @@ async def main():
 
             # Segundo campo de data
             #date_input = page.get_by_role("placeholder", name="Data final").nth(0)
-            date_input = page.locator('input[placeholder="Data Final"]')
+            date_input = page.locator('input[placeholder="Data Final"]').nth(0)
             #date_input = page.locator('xpath=/html[1]/body[1]/div[4]/div[2]/div[1]/div[1]/div[3]/div[2]/form[1]/div[1]/span[2]/div[1]/div[1]/span[3]/span[1]/input[1]').nth(0)
             await date_input.wait_for(state="visible", timeout=10000)
             await date_input.click(force=True)
