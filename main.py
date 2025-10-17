@@ -90,9 +90,9 @@ async def main():
             await page.wait_for_timeout(5000)
             
 
-            await page.get_by_text("Exportar").click()
+            #await page.get_by_role("text", name="Exportar").nth(1).click()
+            await page.locator('xpath=/html[1]/body[1]/div[4]/div[2]/div[1]/div[1]/div[1]/div[1]').click()
             await page.wait_for_timeout(5000)
-            
             await page.get_by_role('button', name='Confirm').click()
             await page.wait_for_timeout(15000)
 
