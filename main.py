@@ -35,16 +35,16 @@ def update_packing_google_sheets(csv_file_path):
         sheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1qvgVViwnLVkzLnjfWQLU3m6ce0f3lXrvg-aq2YF59v8")
         worksheet1 = sheet1.worksheet("queuelistlog")
         
-        # --- FIX 1: Especificar a codificação ---
-        df = pd.read_csv(csv_file_path, encoding='latin1') 
+        # --- CORREÇÃO APLICADA AQUI ---
+        # Adiciona on_bad_lines='skip' para ignorar linhas malformadas
+        df = pd.read_csv(csv_file_path, encoding='latin1', on_bad_lines='skip') 
         
         df = df.fillna("")
         worksheet1.clear()
         worksheet1.update([df.columns.values.tolist()] + df.values.tolist())
         
-        # --- FIX 2: Mover a mensagem de sucesso para cá ---
         print(f"Arquivo enviado com sucesso para a aba 'queuelistlog'.")
-        print("Dados atualizados com sucesso.") # Movido da função 'main'
+        print("Dados atualizados com sucesso.")
         
         time.sleep(5)
     except Exception as e:
