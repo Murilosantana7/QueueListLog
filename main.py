@@ -114,8 +114,7 @@ async def main():
             # Atualizar Google Sheets (opcional)
             if new_file_path:
                 update_packing_google_sheets(new_file_path)
-                # --- FIX 2: Mensagem removida daqui ---
-                # print("Dados atualizados com sucesso.") # <--- REMOVIDO
+                print("Dados atualizados com sucesso.")
         except Exception as e:
             print(f"Erro durante o processo: {e}")
         finally:
