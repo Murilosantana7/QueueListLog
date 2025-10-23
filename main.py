@@ -36,8 +36,9 @@ def update_packing_google_sheets(csv_file_path):
         worksheet1 = sheet1.worksheet("queuelistlog")
         
         # --- CORREÇÃO APLICADA AQUI ---
-        # Adiciona on_bad_lines='skip' para ignorar linhas malformadas
-        df = pd.read_csv(csv_file_path, encoding='latin1', on_bad_lines='skip') 
+        # Trocamos o motor 'c' (padrão) pelo 'python', que é mais robusto
+        # Removemos 'on_bad_lines' pois 'engine="python"' lida com isso de forma diferente.
+        df = pd.read_csv(csv_file_path, encoding='latin1', engine='python') 
         
         df = df.fillna("")
         worksheet1.clear()
