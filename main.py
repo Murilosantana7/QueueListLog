@@ -34,19 +34,11 @@ def update_packing_google_sheets(csv_file_path):
         client = gspread.authorize(creds)
         sheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1qvgVViwnLVkzLnjfWQLU3m6ce0f3lXrvg-aq2YF59v8")
         worksheet1 = sheet1.worksheet("queuelistlog")
-        
-        # --- CORREÇÃO APLICADA AQUI ---
-        # Trocamos o motor 'c' (padrão) pelo 'python', que é mais robusto
-        # Removemos 'on_bad_lines' pois 'engine="python"' lida com isso de forma diferente.
-        df = pd.read_csv(csv_file_path, encoding='latin1', engine='python') 
-        
+        df = pd.read_csv(csv_file_path)
         df = df.fillna("")
         worksheet1.clear()
         worksheet1.update([df.columns.values.tolist()] + df.values.tolist())
-        
-        print(f"Arquivo enviado com sucesso para a aba 'queuelistlog'.")
-        print("Dados atualizados com sucesso.")
-        
+        print(f"Arquivo enviado com sucesso para a aba 'PROD'.")
         time.sleep(5)
     except Exception as e:
         print(f"Erro durante o processo: {e}")
