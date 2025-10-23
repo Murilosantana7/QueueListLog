@@ -34,16 +34,23 @@ def update_packing_google_sheets(csv_file_path):
         client = gspread.authorize(creds)
         sheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1qvgVViwnLVkzLnjfWQLU3m6ce0f3lXrvg-aq2YF59v8")
         worksheet1 = sheet1.worksheet("queuelistlog")
-        df = pd.read_csv(csv_file_path)
+        
+        # --- FIX 1: Especificar a codificação ---
+        df = pd.read_csv(csv_file_path, encoding='latin1') 
+        
         df = df.fillna("")
         worksheet1.clear()
         worksheet1.update([df.columns.values.tolist()] + df.values.tolist())
-        print(f"Arquivo enviado com sucesso para a aba 'EXP'.")
+        
+        # --- FIX 2: Mover a mensagem de sucesso para cá ---
+        print(f"Arquivo enviado com sucesso para a aba 'queuelistlog'.")
+        print("Dados atualizados com sucesso.") # Movido da função 'main'
+        
         time.sleep(5)
     except Exception as e:
         print(f"Erro durante o processo: {e}")
 
-async def main():        
+async def main():    
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False, args=["--no-sandbox", "--disable-dev-shm-usage", "--window-size=1920,1080"])
@@ -100,7 +107,7 @@ async def main():
             await page.wait_for_timeout(15000)
 
           
-            # 👉 Botão de download
+# 👉 Botão de download
             async with page.expect_download() as download_info:
                 await page.get_by_role("button", name="Baixar").nth(0).click()
                 #await page.locator('xpath=/html/body/span/div/div[1]/div/span/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/button').click()
@@ -113,7 +120,8 @@ async def main():
             # Atualizar Google Sheets (opcional)
             if new_file_path:
                 update_packing_google_sheets(new_file_path)
-                print("Dados atualizados com sucesso.")
+                # --- FIX 2: Mensagem removida daqui ---
+                # print("Dados atualizados com sucesso.") # <--- REMOVIDO
         except Exception as e:
             print(f"Erro durante o processo: {e}")
         finally:
