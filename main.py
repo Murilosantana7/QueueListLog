@@ -72,7 +72,7 @@ async def main():
             await page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div/div/div/div[2]/button/span').click()
             await page.wait_for_timeout(10000)
             
-            d3 = (datetime.now() - timedelta(days=7)).strftime("%Y/%m/%d")
+            d3 = (datetime.now() - timedelta(days=3)).strftime("%Y/%m/%d")
             d1 = (datetime.now() + timedelta(days=1)).strftime("%Y/%m/%d")
 
             # Primeiro campo de data
